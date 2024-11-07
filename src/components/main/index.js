@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { questions } from "../../core/constants/constants";
-import Option from "../Option";
+import { questions,backgroundGragient} from "../../core/constants/constants";
+import Option from "../option";
 import { Button } from "antd";
 import "./index.css";
 
@@ -17,13 +17,14 @@ const Main = () => {
       if (questions[index].answer === i) {
         e.target.style.background = "green";
         setTimeout(() => {
-          e.target.style.background = "white";
+          e.target.style.background = backgroundGragient
           setIndex((prev) => prev + 1);
         }, 1000);
       } else {
         e.target.style.background = "red";
         setTimeout(() => {
-          e.target.style.background = "white";
+      
+          e.target.style.background = backgroundGragient;
         }, 1000);
       }
       setIsDisabled(false);
@@ -62,7 +63,6 @@ const Main = () => {
     setCallToFriend(true)
   }
   useEffect(() => {}, []);
-
   return (
     <div className="main_container">
       <div className="question_container">{questions[index]?.question}</div>

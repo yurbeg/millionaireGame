@@ -51,3 +51,10 @@ export const questions = [
     },
     
 ];
+export const backgroundGragient = 'linear-gradient(0deg, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 29%, rgba(9,9,121,1) 72%, rgba(0,212,255,1) 100%';
+export const regexpValidation = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+
+export  const ROUTE_CONSTANTS = {
+    LOGIN:"/login",
+    REGSITER:"/register"
+}

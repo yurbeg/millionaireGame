@@ -1,12 +1,8 @@
 .main_container{
-    margin:  auto;
-    border: 1px solid rgb(231, 57, 57);
     width: 50%;
     padding: 20px;
-    border-radius: 12px;
 }
 .question_container{
-    border: 1px solid black;
     width: 100%;
     height: 100px;
     display: flex;
@@ -14,10 +10,10 @@
     justify-content: center;
     align-items: center;
     border-radius: 12px;
-    
+    color: white;
+    background: linear-gradient(0deg, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 29%, rgba(9,9,121,1) 72%, rgba(0,212,255,1) 100%);
 }
 .options_container{
-    border: 1px solid black;
     border-radius: 12px;
     width: 100%;
     min-height:200px;
@@ -28,7 +24,6 @@
     margin-top: 20px;
 }
 .answers{
-    border:1px dotted orange;
     width: 45%;
     min-height:100px;
     border-radius: 12px;
@@ -36,18 +31,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: white;
+    color: white;
+    background: linear-gradient(0deg, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 29%, rgba(9,9,121,1) 72%, rgba(0,212,255,1) 100%);
 }
-.answers:active {
+
+    .answers:hover {
+        background: linear-gradient(0deg, rgba(7, 110, 131, 0.567) 0%, rgba(6, 6, 88, 0.516) 29%, rgba(6, 6, 88, 0.516) 72%, rgba(7, 110, 131, 0.567) 100%);
+    }
+
+    .answers:active {
     background-color: #f4a019;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
   }
-
-
   .help_elements{
     display: flex;
     justify-content: center;
     margin-top: 15px;
     gap: 10px;
   }
+  .help_elements > button{
+    color: white;
+    background: rgb(0,212,255);
+    background: linear-gradient(0deg, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 29%, rgba(9,9,121,1) 72%, rgba(0,212,255,1) 100%);
+}
+
+  
