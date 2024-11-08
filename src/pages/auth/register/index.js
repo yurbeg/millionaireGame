@@ -3,10 +3,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Form, Button, Input, Flex } from 'antd';
 import { auth } from '../../../services/firbase';
 import { regexpValidation, ROUTE_CONSTANTS } from '../../../core/constants/constants.js';
-// import { setDoc, doc } from 'firebase/firestore';
-// import AuthWrapper from '../../../components/sheard/AuthWrapper';
 import { Link, useNavigate } from 'react-router-dom';
-// import registerBanner from '../../../core/images/auth-register.jpg';
 
 
 const Register = () => {
@@ -19,12 +16,6 @@ const Register = () => {
     const { firstName, lastName, email, password } = values;
     try {
       const response = await createUserWithEmailAndPassword(auth, email, password);
-      const { uid } = response.user;
-      // const createdDoc = doc(db, FIRESTORE_PATH_NAMES.REGISTERED_USERS, uid);
-      // await setDoc(createdDoc, {
-      //   uid, firstName, lastName, email
-      // });
-
       navigate("/login");
     }catch (e) {
       console.log(e);
@@ -34,7 +25,6 @@ const Register = () => {
   }
 
   return (
-    // <AuthWrapper title="Sign up" banner={registerBanner}>
       <Form layout="vertical" form={form} onFinish={handleRegister}>
         <Form.Item
           label="First Name"
@@ -126,7 +116,6 @@ const Register = () => {
         </Flex>
 
       </Form>
-    // </AuthWrapper>
   )
 }
 export default Register;
