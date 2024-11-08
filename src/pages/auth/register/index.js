@@ -4,7 +4,7 @@ import { Form, Button, Input, notification } from 'antd';
 import { auth } from '../../../services/firbase';
 import { regexpValidation, ROUTE_CONSTANTS } from '../../../core/constants/constants.js';
 import { Link, useNavigate } from 'react-router-dom';
-import './index.css'; 
+import './index.css'; // Don't forget to import the updated styles
 
 const Register = () => {
   const [loading, setLoading] = useState(false);

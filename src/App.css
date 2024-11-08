@@ -2,7 +2,6 @@ body{
     background: url("../src/core/images/background.jpg");
     background-size: cover;
 }
-
 .App{
     display: flex;
     justify-content: center;

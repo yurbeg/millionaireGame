@@ -64,7 +64,9 @@ const Login = () => {
           Sign in
         </Button>
 
-        <Link to={ROUTE_CONSTANTS.REGSITER}>Create account</Link>
+        <Link to={ROUTE_CONSTANTS.REGSITER}>
+          Create account
+        </Link>
       </Form>
     </div>
   );
