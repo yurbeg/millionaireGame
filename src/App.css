@@ -1,7 +1,41 @@
-body{
-    background: url("../src/core/images/background.jpg");
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; 
+    background: url("../src/core/images/background.jpg") no-repeat center center fixed; 
     background-size: cover;
-}
+    font-family: Arial, sans-serif; 
+  }
+  
+  * {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+
+  @media only screen and (max-width: 1200px) {
+    body {
+      background-size: cover; 
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    body {
+      background-size: cover;
+    }
+  }
+  
+  @media only screen and (max-width: 480px) {
+    body {
+      background-size: cover; 
+    }
+  }
+  
+
+
+  
 .App{
     display: flex;
     justify-content: center;
