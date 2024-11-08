@@ -10,12 +10,11 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const [form] =  Form.useForm();
   const navigate = useNavigate();
-
   const handleRegister =  async values => {
     setLoading(true);
-    const { firstName, lastName, email, password } = values;
+    const {  email, password } = values;
     try {
-      const response = await createUserWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
       navigate("/login");
     }catch (e) {
       console.log(e);
