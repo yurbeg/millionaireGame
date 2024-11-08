@@ -2,10 +2,14 @@ import { useEffect, useState } from "react";
 import { questions,backgroundGragient,backgroundGragientHover} from "../../core/constants/constants";
 import Option from "../option";
 import { Button } from "antd";
+import Points from "../points";
+import { fibonacciArr } from "../../core/constants/constants";
 import "./index.css";
 
 const Main = () => {
   const [index, setIndex] = useState(0);
+  const [lose,setLose] = useState(false)
+  const [win,setWin] = useState(false)
   const [isDisabled, setIsDisabled] = useState(false);
   const [fiftyFiftyUsed, setFiftyFiftyUsed] = useState(false); // Состояние для отслеживания использования 50:50
   const [callToFriend,setCallToFriend] = useState(false)
@@ -16,12 +20,24 @@ const Main = () => {
       if (questions[index].answer === i) {
         e.target.style.background = "green";
         setTimeout(() => {
+          console.log(index+1,questions.length);
+          
+          if(index+1 === questions.length ){
+            setWin(true)
+          }else{
+          document.getElementById(`${index}`).style.background = "orange"
+
+          }
           e.target.style.background = backgroundGragient
-          setIndex((prev) => prev + 1);
+          setIndex((prev) => prev + 1);      
+          if(index >= 1){
+            document.getElementById(`${index-1}`).style.background = ""
+          }
         }, 1000);
       } else {
         e.target.style.background = "red";
         setTimeout(() => {
+          setLose(true)
           e.target.style.background = backgroundGragient;
         }, 1000);
       }
@@ -67,10 +83,16 @@ const Main = () => {
   }
   useEffect(() => {}, []);
   return (
+    <div style={{
+      display:"flex",
+      width:"100%",
+      justifyContent:"center"
+    }}>
+      
     <div className="main_container">
       <div className="question_container">{questions[index]?.question}</div>
       <div className="options_container">
-        {questions[index]?.options.map((answer, i) => (
+        {(!lose && !win) && questions[index]?.options.map((answer, i) => (
           <Option
             key={i}
             answer={answer}
@@ -79,6 +101,8 @@ const Main = () => {
             isDisabled={isDisabled}
           />
         ))}
+        {lose && <div  className="result_container">Ձեր շահած գումարի չափը կազմում է {fibonacciArr[index-1]?fibonacciArr[index-1]*1000:0} դրամ</div>}
+        {win && <div  className="result_container">Շնորհավորում ենք, դուք հաղթել եք {fibonacciArr[fibonacciArr.length-1]*1000} դրամ</div>}
       </div>
       <div className="help_elements">
       {!fiftyFiftyUsed && (
@@ -91,8 +115,12 @@ const Main = () => {
           Զանգ ընկերոջը
         </Button>
       )}
+
       </div>
     
+    </div>
+      <Points/>
+
     </div>
   );
 };
