@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { questions,backgroundGragient} from "../../core/constants/constants";
+import { questions,backgroundGragient,backgroundGragientHover} from "../../core/constants/constants";
 import Option from "../option";
 import { Button } from "antd";
 import "./index.css";
@@ -12,7 +12,6 @@ const Main = () => {
   const handleClick = (e, i) => {
     e.target.style.background = "orange";
     setIsDisabled(true);
-
     setTimeout(() => {
       if (questions[index].answer === i) {
         e.target.style.background = "green";
@@ -23,10 +22,15 @@ const Main = () => {
       } else {
         e.target.style.background = "red";
         setTimeout(() => {
-      
           e.target.style.background = backgroundGragient;
         }, 1000);
       }
+      e.target.addEventListener('mouseover', (e) => {
+        e.target.style.background = backgroundGragientHover
+      })
+      e.target.addEventListener('mouseleave', (e) => {
+        e.target.style.background = backgroundGragient; 
+      });
       setIsDisabled(false);
     }, 1500);
   };
@@ -44,7 +48,6 @@ const Main = () => {
       console.log(randomIndex, questions[index].answer);
       if(randomIndex !== questions[index].answer && !randomIndexes.includes(randomIndex)){
         questions[index].options.splice(randomIndex,1)
-        console.log(questions[index].options  );
         
         randomIndexes.push(randomIndex)
       }

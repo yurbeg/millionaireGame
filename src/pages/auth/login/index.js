@@ -2,21 +2,23 @@ import { Form, Input, Button, notification } from "antd";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../services/firbase";
 import { useState } from "react";
-import { useNavigate,Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { ROUTE_CONSTANTS } from "../../../core/constants/constants";
-import "./index.css"
+import "./index.css";
+
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const handleLogin = async values => {
+  const handleLogin = async (values) => {
     setLoading(true);
     try {
       const { email, password } = values;
       await signInWithEmailAndPassword(auth, email, password);
       form.resetFields();
-      navigate("/")
-    }catch (error) {
+      
+      navigate('/');
+    } catch (error) {
       notification.error({
         message: 'Invalid Login Credentials',
       });
@@ -31,8 +33,8 @@ const Login = () => {
       form={form}
       style={{
         width: 600,
-        background:"white",
-        padding:20
+        background: "white",
+        padding: 20
       }}
       onFinish={handleLogin}
     >

@@ -52,6 +52,7 @@ export const questions = [
     
 ];
 export const backgroundGragient = 'linear-gradient(0deg, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 29%, rgba(9,9,121,1) 72%, rgba(0,212,255,1) 100%';
+export const backgroundGragientHover =`linear-gradient(0deg,rgba(7, 110, 131, 0.567) 0%,rgba(6, 6, 88, 0.516) 29%,rgba(6, 6, 88, 0.516) 72%,rgba(7, 110, 131, 0.567) 100%)`;
 export const regexpValidation = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
 export  const ROUTE_CONSTANTS = {
