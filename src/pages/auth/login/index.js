@@ -10,13 +10,13 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
   const navigate = useNavigate();
+
   const handleLogin = async (values) => {
     setLoading(true);
     try {
       const { email, password } = values;
       await signInWithEmailAndPassword(auth, email, password);
       form.resetFields();
-      
       navigate('/');
     } catch (error) {
       notification.error({
@@ -28,48 +28,45 @@ const Login = () => {
   };
 
   return (
-    <Form
-      layout="vertical"
-      form={form}
-      style={{
-        width: 600,
-        background: "white",
-        padding: 20
-      }}
-      onFinish={handleLogin}
-    >
-      <Form.Item
-        label="Email"
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: "Please input your email!",
-          },
-        ]}
+    <div className="login-form-container">
+      <Form
+        layout="vertical"
+        form={form}
+        onFinish={handleLogin}
       >
-        <Input type="email" placeholder="Email" />
-      </Form.Item>
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: "Please input your email!",
+            },
+          ]}
+        >
+          <Input type="email" placeholder="Email" />
+        </Form.Item>
 
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your password!",
-          },
-        ]}
-      >
-        <Input.Password placeholder="Password" />
-      </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: "Please input your password!",
+            },
+          ]}
+        >
+          <Input.Password placeholder="Password" />
+        </Form.Item>
 
-      <Button type="primary" htmlType="submit" loading={loading}>
-        Sign in
-      </Button>
+        <Button type="primary" htmlType="submit" loading={loading} block>
+          Sign in
+        </Button>
 
-      <Link to={ROUTE_CONSTANTS.REGSITER}>Create account</Link>
-    </Form>
+        <Link to={ROUTE_CONSTANTS.REGSITER}>Create account</Link>
+      </Form>
+    </div>
   );
 };
 

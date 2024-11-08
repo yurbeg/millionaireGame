@@ -12,7 +12,7 @@ body {
   }
   
   /* Center the form and give it a card-like appearance */
-  .login-form-container {
+  .register-form-container {
     width: 100%;
     max-width: 400px;  /* Limit the width */
     padding: 20px;
@@ -22,7 +22,7 @@ body {
   }
   
   /* Form title */
-  .login-form-container .ant-form-item-label > label {
+  .register-form-container .ant-form-item-label > label {
     color: #fff; /* White label text */
   }
   
@@ -56,15 +56,15 @@ body {
     border-color: #40a9ff;
   }
   
-  /* Link to create an account */
-  .login-form-container .ant-typography {
+  /* Link to login page */
+  .register-form-container .ant-typography {
     color: #1890ff; /* Blue link */
     display: block;
     margin-top: 16px;
     text-align: center;
   }
   
-  .login-form-container .ant-typography:hover {
+  .register-form-container .ant-typography:hover {
     text-decoration: underline;
   }
   

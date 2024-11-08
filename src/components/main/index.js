@@ -19,9 +19,7 @@ const Main = () => {
     setTimeout(() => {
       if (questions[index].answer === i) {
         e.target.style.background = "green";
-        setTimeout(() => {
-          console.log(index+1,questions.length);
-          
+        setTimeout(() => {          
           if(index+1 === questions.length ){
             setWin(true)
           }else{

@@ -1,29 +1,35 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { Form, Button, Input, Flex } from 'antd';
+import { Form, Button, Input, notification } from 'antd';
 import { auth } from '../../../services/firbase';
 import { regexpValidation, ROUTE_CONSTANTS } from '../../../core/constants/constants.js';
 import { Link, useNavigate } from 'react-router-dom';
-
+import './index.css'; 
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
-  const [form] =  Form.useForm();
+  const [form] = Form.useForm();
   const navigate = useNavigate();
-  const handleRegister =  async values => {
+
+  const handleRegister = async (values) => {
     setLoading(true);
-    const {  email, password } = values;
+    const { email, password } = values;
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       navigate("/login");
-    }catch (e) {
+    } catch (e) {
       console.log(e);
+      notification.error({
+        message: "Registration Failed",
+        description: "There was an error registering your account. Please try again.",
+      });
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
+    <div className="register-form-container">
       <Form layout="vertical" form={form} onFinish={handleRegister}>
         <Form.Item
           label="First Name"
@@ -67,7 +73,7 @@ const Register = () => {
         <Form.Item
           label="Password"
           name="password"
-          tooltip="Passwrord must be min 6 max 16 characters ....."
+          tooltip="Password must be min 6 max 16 characters ....."
           rules={[
             {
               required: true,
@@ -75,7 +81,7 @@ const Register = () => {
             },
             {
               pattern: regexpValidation,
-              message: 'Wrong password'
+              message: 'Wrong password format'
             }
           ]}
         >
@@ -83,43 +89,38 @@ const Register = () => {
         </Form.Item>
 
         <Form.Item
-          label="Config Password"
+          label="Confirm Password"
           name="confirm"
           dependencies={['password']}
           rules={[
             {
               required: true,
-              message: 'Please input your password!'
+              message: 'Please confirm your password!'
             },
             ({ getFieldValue }) => ({
               validator(_, value) {
-                if(!value || getFieldValue('password') === value) {
+                if (!value || getFieldValue('password') === value) {
                   return Promise.resolve();
                 }
-
-                return Promise.reject(new Error('The new password that you entered do not match!!!'));
+                return Promise.reject(new Error('The passwords do not match!'));
               }
             })
           ]}
         >
-          <Input.Password placeholder="Config Password"/>
+          <Input.Password placeholder="Confirm Password"/>
         </Form.Item>
 
-        <Flex align="flex-end" gap="10px" justify="flex-end">
-          <Link to={ROUTE_CONSTANTS.LOGIN}>
-            Sign in
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Link to={ROUTE_CONSTANTS.LOGIN} style={{ color: '#1890ff' }}>
+            Already have an account? Sign in
           </Link>
           <Button type="primary" htmlType="submit" loading={loading}>
             Sign up
           </Button>
-        </Flex>
-
+        </div>
       </Form>
-  )
-}
+    </div>
+  );
+};
+
 export default Register;
-
-
-
-
-
