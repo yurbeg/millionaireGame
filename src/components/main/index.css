@@ -37,8 +37,8 @@
 @media only screen and (max-width: 768px) {
   .question_container {
     font-size: 18px; 
-    height: auto;
-    padding: 15px;
+    padding: 5px;
+    width: 95%;
   }
 }
 

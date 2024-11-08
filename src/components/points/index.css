@@ -16,9 +16,40 @@
   );
   padding: 40px;
 }
+
 .points > div {
   padding: 15px;
-  border-radius:12px ;
+  border-radius: 12px;
   margin-top: 10px;
   color: white;
+}
+
+@media only screen and (max-width: 1200px) {
+  .points {
+    padding: 30px; 
+  }
+
+  .points > div {
+    padding: 12px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .points {
+    padding: 20px; 
+  }
+
+  .points > div {
+    padding: 10px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .points {
+    padding: 15px; 
+  }
+
+  .points > div {
+    padding: 8px;
+  }
 }
