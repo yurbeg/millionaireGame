@@ -19,6 +19,8 @@ const Main = () => {
   const [isDisabled, setIsDisabled] = useState(false);
   const [fiftyFiftyUsed, setFiftyFiftyUsed] = useState(false); // Состояние для отслеживания использования 50:50
   const [callToFriend, setCallToFriend] = useState(false);
+  const [backBtn, setBackBtn] = useState(false);
+
   const handleClick = (e, i) => {
     e.target.style.background = "orange";
     setIsDisabled(true);
@@ -28,6 +30,9 @@ const Main = () => {
         setTimeout(() => {
           if (index + 1 === questions.length) {
             setWin(true);
+            setBackBtn(true)
+            setCallToFriend(true)
+            setFiftyFiftyUsed(true)
           } else {
             document.getElementById(`${index}`).style.background = "orange";
           }
@@ -41,6 +46,9 @@ const Main = () => {
         e.target.style.background = "red";
         setTimeout(() => {
           setLose(true);
+          setCallToFriend(true)
+          setFiftyFiftyUsed(true)
+          setBackBtn(true)
           e.target.style.background = backgroundGragient;
         }, 1000);
       }
@@ -57,7 +65,6 @@ const Main = () => {
   const handleFiftyFifty = () => {
     if (fiftyFiftyUsed || !questions[index]) return;
     setFiftyFiftyUsed(true);
-
     const correctAnswer = questions[index].options[questions[index].answer];
     const randomIndexes = [];
     let count = 2;
@@ -72,22 +79,31 @@ const Main = () => {
         !randomIndexes.includes(randomIndex)
       ) {
         questions[index].options.splice(randomIndex, 1);
-
         randomIndexes.push(randomIndex);
       } else {
         count++;
       }
     }
     questions[index].answer = questions[index].options.indexOf(correctAnswer);
-    console.log(correctAnswer);
   };
-
   const handleCallToFriend = () => {
     alert(
       `Ճիշտ պատասխանն է ${questions[index].options[questions[index].answer]}`
     );
     setCallToFriend(true);
   };
+  const handleBackBtn =()=>{
+    setIndex(0)
+    setCallToFriend(false);
+    setFiftyFiftyUsed(false);
+    
+    setBackBtn(false)
+    if(!win && index  !==0 ){
+      document.getElementById(`${index - 1}`).style.background = "";
+    }
+    setWin(false);
+    setLose(false);
+  }
   useEffect(() => {}, []);
   return (
     <div
@@ -134,6 +150,11 @@ const Main = () => {
           {!callToFriend && (
             <Button className="fifty_fifty_button" onClick={handleCallToFriend}>
               <PhoneOutlined />
+            </Button>
+          )}
+            {backBtn && (
+            <Button className="fifty_fifty_button" onClick={handleBackBtn}>
+              Վերադառնալ
             </Button>
           )}
         </div>
